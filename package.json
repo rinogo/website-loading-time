@@ -1,0 +1,23 @@
+{
+  "name": "website-loading-time",
+  "version": "1.0.0",
+  "description": "",
+  "main": "website-loading-time.js",
+  "dependencies": {
+    "nightmare": "^2.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rinogo/website-loading-time.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rinogo/website-loading-time/issues"
+  },
+  "homepage": "https://github.com/rinogo/website-loading-time#readme"
+}
