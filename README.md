@@ -6,6 +6,8 @@ Measure the full website loading time for a particular URL using Nightmare JS/El
 npm install
 ```
 
+Note that if you are running the script in a headless (server/CLI) environment, you'll need to install and run xvfb.
+
 ## Usage
 ```
 node website-loading-time.js https://google.com
