@@ -23,7 +23,7 @@ Constants are available within `website-loading-time.js` for modifying the follo
 
 
 ## Example output
-Full output
+### Full output
 ```
 website-loading-time rinogo$ node website-loading-time.js https://google.com
 1569876956500	1657
@@ -36,7 +36,7 @@ website-loading-time rinogo$ node website-loading-time.js https://google.com
 ...
 ```
 
-Loading times only (no timestamps or errors)
+### Loading times only (no timestamps or errors)
 ```
 website-loading-time rinogo$ node website-loading-time.js https://google.com
 1657
