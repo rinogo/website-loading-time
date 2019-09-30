@@ -13,6 +13,15 @@ Note that if you are running the script in a headless (server/CLI) environment, 
 node website-loading-time.js https://google.com
 ```
 
+Constants are available within `website-loading-time.js` for modifying the following settings:
+- Frequency (Integer)
+- Timeout (Integer)
+- Loading time sanity check threshold (Integer)
+- Show browser (Boolean)
+- Show errors (Boolean)
+- Include timestamp (Boolean)
+
+
 ## Example output
 ```
 website-loading-time rinogo$ node website-loading-time.js https://google.com
