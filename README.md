@@ -16,10 +16,12 @@ node website-loading-time.js https://google.com
 ## Example output
 ```
 website-loading-time rinogo$ node website-loading-time.js https://google.com
-796
-Error: Navigation timed out after 4000 ms
-723
-859
-1007
-966
+1569876956500	1657
+1569876971524	967
+1569876986529	1179
+1569877001535	1005
+1569877016541	1084
+1569877031546	Error: Navigation timed out after 4000 ms
+1569877046551	1076
+
 ```
