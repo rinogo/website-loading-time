@@ -73,7 +73,10 @@ function getNightmare() {
     openDevTools: {
       mode: "detach"
     },
-  });
+  })
+  .viewport(1680, 1050)
+  .useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
+  .goto("https://google.com");
 
   return nightmare;
 }
@@ -88,24 +91,26 @@ function closeNightmare() {
 
 function testUrl(url) {
   nightmare = getNightmare();
-	start = new Date().getTime();
+  start = new Date().getTime();
 	nightmare
-		.viewport(1680, 1050)
-		.useragent("Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36")
-		.goto(url)
-		.clearCache()
-		// .end()
-		.then(function (r) {
+    .goto(url)
+    .then(function (r) {
       var duration = new Date().getTime() - start;
-      if(duration < LOADING_TIME_SANITY_CHECK_THRESHOLD) {
-        closeNightmare();
-        throw { message: "The loading time sanity check threshold was not met. Nightmare (Electron) will be restarted." };
-      }
 
-      console.log((INCLUDE_TIMESTAMP ? start + "\t" : "") + duration);
-		})
-		.catch(handleError);
+      nightmare
+        .clearCache()
+        .then(function (r) {
+          if(duration < LOADING_TIME_SANITY_CHECK_THRESHOLD) {
+            closeNightmare();
+            throw { message: "The loading time sanity check threshold was not met. Nightmare (Electron) will be restarted." };
+          }
+    
+          console.log((INCLUDE_TIMESTAMP ? start + "\t" : "") + duration);
           logToServer(start, duration);
+        })
+        .catch(handleError);
+    })
+    .catch(handleError);
 }
 
 //Handle a NightmareJS error.
