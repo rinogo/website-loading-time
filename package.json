@@ -4,7 +4,8 @@
   "description": "",
   "main": "website-loading-time.js",
   "dependencies": {
-    "nightmare": "^2.10.0"
+    "nightmare": "^2.10.0",
+    "request": "^2.88.0"
   },
   "devDependencies": {},
   "scripts": {

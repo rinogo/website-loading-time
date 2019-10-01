@@ -20,6 +20,7 @@ Constants are available within `website-loading-time.js` for modifying the follo
 - Show browser (Boolean)
 - Show errors (Boolean)
 - Include timestamp (Boolean)
+- NIXStats API Key (String) 
 
 
 ## Example output

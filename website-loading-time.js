@@ -7,17 +7,21 @@ const LOADING_TIME_SANITY_CHECK_THRESHOLD = 100; //Sometimes, our Electron windo
 const SHOW_BROWSER = true;
 const SHOW_ERRORS = false;
 const INCLUDE_TIMESTAMP = true;
+const LOGGING_API_KEY = "abc123";
 
 //Dev settings
 // const FREQUENCY = 5000;
 // const TIMEOUT = FREQUENCY - 1000;
-// const LOADING_TIME_SANITY_CHECK_THRESHOLD = 1200;
+// const LOADING_TIME_SANITY_CHECK_THRESHOLD = 100;
 // const SHOW_BROWSER = true;
 // const SHOW_ERRORS = true;
 // const INCLUDE_TIMESTAMP = true;
+// const LOGGING_API_KEY = "abc123";
 
 var url = process.argv[2];
 var Nightmare = require("nightmare");
+var request = require("request");
+// require("request-debug")(request); //For request debugging (Not included in package.json; execute `npm install request-debug` to use)
 
 //From https://github.com/segmentio/nightmare#extending-nightmare
 Nightmare.action(
@@ -101,6 +105,7 @@ function testUrl(url) {
       console.log((INCLUDE_TIMESTAMP ? start + "\t" : "") + duration);
 		})
 		.catch(handleError);
+          logToServer(start, duration);
 }
 
 //Handle a NightmareJS error.
@@ -126,4 +131,28 @@ function handleError(error) {
 	}
 	// console.error(JSON.stringify({"status": "error", "message": message}));
 	console.log((INCLUDE_TIMESTAMP ? start + "\t" : "") + "Error: " + message);
+}
+
+//Currently configured to log to NIXStats, but can likely be easily adapted to your monitoring service of choice.
+function logToServer(timestamp, duration) {
+  var server_id = "abc123";
+  
+  request.post(
+    "https://api.eu.nixstats.com/v1/server/" + server_id + "/store?token=" + LOGGING_API_KEY,
+    {
+      json: {
+        metrics: [
+          {
+            metric: "testgroup.loading_time",
+            points: [[Math.round(timestamp / 1000), duration / 1000]]
+          }
+        ]
+      }
+    },
+    function (error, response, body) {
+      if(error) {
+        handleError(error);
+      }
+    }
+  );
 }
