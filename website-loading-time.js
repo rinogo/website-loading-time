@@ -148,7 +148,7 @@ function logToServer(timestamp, duration) {
       json: {
         metrics: [
           {
-            metric: "testgroup.loading_time",
+            metric: "Social5LoadingTimes.backend",
             points: [[Math.round(timestamp / 1000), duration / 1000]]
           }
         ]
