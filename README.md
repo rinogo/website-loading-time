@@ -22,6 +22,12 @@ Constants are available within `website-loading-time.js` for modifying the follo
 - Include timestamp (Boolean)
 - NIXStats API Key (String) 
 
+## Cron and xvfb Usage
+We use this script in combination with xvfb on a headless machine (server) to check and report the actual loading times of one of our sites. This is the cron job we use; hopefully it helps you! This cron job uses `flock` to ensure that only one instance of the script is running at a time:
+```
+#Run website-loading-time.js on the server and report the loading time to NIXStats.
+* * * * * /usr/bin/flock -n /tmp/website-loading-time.lockfile xvfb-run -a --server-args="-screen 0 1280x2000x24" node /home/rinogo/website-loading-time/website-loading-time.js https://google.com -- --progress=false --single-run --watch=false
+```
 
 ## Example output
 ### Full output
