@@ -8,7 +8,7 @@ npm install
 
 Note that if you are running the script in a headless (server/CLI) environment, you'll need to install and run xvfb. On RedHat or CentOS, this would be accomplished with something like the following:
 ```
-sudo yum install xorg-x11-server-Xvfb
+sudo yum install xorg-x11-server-Xvfb libXScrnSaver
 ```
 
 ## Usage
