@@ -6,7 +6,10 @@ Measure the full website loading time for a particular URL using Nightmare JS/El
 npm install
 ```
 
-Note that if you are running the script in a headless (server/CLI) environment, you'll need to install and run xvfb.
+Note that if you are running the script in a headless (server/CLI) environment, you'll need to install and run xvfb. On RedHat or CentOS, this would be accomplished with something like the following:
+```
+sudo yum install xorg-x11-server-Xvfb
+```
 
 ## Usage
 ```
